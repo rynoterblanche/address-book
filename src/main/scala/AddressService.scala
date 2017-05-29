@@ -20,5 +20,10 @@ class AddressService(val addressReader: AddressReader) {
     case None => 0
   }
 
+  def getAddress(name: String): Option[Address] = addressList.find(_.name == name)
+
+  def getAgeDiffByName(name1: String, name2: String): Int = getAgeDiffByAddress(getAddress(name1), getAddress(name2))
+
+  def getAgeDiffByAddress(a1: Option[Address], a2: Option[Address]): Int = Math.abs(getAge(a1) - getAge(a2))
 
 }
